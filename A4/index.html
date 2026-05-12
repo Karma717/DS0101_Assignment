@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Personal Profile Website Design</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">Portfolio</a>
+
+      <i class="bx bx-menu" id="menu-icon"></i>
+
+      <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="theme-toggle" id="theme-toggle">
+        <i class='bx bx-moon'></i>
+      </div>
+    </header>
+
+    <section class="home" id="home">
+      <div class="home-content">
+        <h3>Hello, It's Me</h3>
+        <h1>Karma Wangchuk</h1>
+        <h3>And I'm a <span class="multiple-text">Software Developer</span></h3>
+        <p>
+          I am a passionate software developer with experience in building web
+          applications. I love to create efficient and scalable solutions to
+          solve real-world problems.
+        </p>
+
+        <div class="social-media">
+          <a href="#"><i class="bx bxl-facebook"></i></a>
+          <a href="#"><i class="bx bxl-twitter"></i></a>
+          <a href="#"><i class="bx bxl-instagram"></i></a>
+          <a href="#"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+        <a href="#" class="btn">Download CV</a>
+      </div>
+
+      <div class="home-img">
+        <img src="me1.png" alt="Profile Picture" loading="lazy"/>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="112.png" alt="About Picture" loading="lazy"/>
+      </div>
+
+      <div class="about-content">
+        <h2 class="heading">About <span>Me</span></h2>
+        <h3> <span>Software Developer!</span></h3>
+        <p>
+          I'm Software engineer student, passionate about technology, design and
+          problem solving with growing experience in web development and UI UX
+          design, I enjoy solving problems and creating designs that combines
+          creativity and functionality.
+        </p>
+        <p>
+          Currently, I am building my skills in front-end development while
+          designing in figma. My goal is to become a creative developer who can
+          design
+        </p>
+        <a href="#" class="btn">Read More</a>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="heading">My <span>Services</span></h2>
+
+        <div class="services-container">
+            <div class="services-box">
+                <i class='bx bx-code-alt'></i>
+                <h3>Web Development</h3>
+                <p>I build responsive and user-friendly websites using 
+                  HTML, CSS, and JavaScript to bring ideas to life.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bx-paint'></i>
+                <h3>Graphic Design</h3>
+                <p>I design creative visuals, logos, and layouts 
+                  that enhance your brand identity and digital presence.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bx-bar-chart-alt'></i>
+                <h3>Digital Marketing</h3>
+                <p>I help businesses grow online through SEO, social 
+                  media management, and targeted digital campaigns</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Latest <span>Projects</span></h2>
+
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <img src="1.png" alt="Maclaren Website Design" loading="lazy">
+                <div class="portfolio-layer">
+                    <h4>Maclaren Website Design</h4>
+                    <p>The McLaren website project was web design inspired by 
+                      the luxury and innovation of the McLaren automotive brand.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="2.png" alt="Redbull Website Design" loading="lazy">
+                <div class="portfolio-layer">
+                    <h4>Redbull Website Design</h4>
+                    <p>The project it highlights Red Bull’s lifestyle, sports events, and products
+                       with bold colors, fast-paced animations, and interactive elements. — “gives you wings”.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="3.png" alt="Donut Website Design" loading="lazy">
+                <div class="portfolio-layer">
+                    <h4>Donut Website Design</h4>
+                    <p>The project presents a adventurous and classic taste, it stands out for its 
+                      vibrant colors, and indulgent glaze that brings all three flavors together in harmony.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div> 
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me!</span></h2>
+
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+
+            <div class="input-box">
+                <input type="number" placeholder="Mobile Number">
+                <input type="text" placeholder="Email Subject">
+            </div>
+
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 by Karma Wangchuk | All Rights Reserved.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
