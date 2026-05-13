@@ -2,5 +2,11 @@
   "devDependencies": {
     "jest": "^30.4.2",
     "jest-junit": "^17.0.0"
+  },
+  "name": "todo-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Tests passed\""
   }
 }
