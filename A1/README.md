@@ -52,7 +52,7 @@ todo-app/
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git clone https://github.com/Karma717/DS0101.git
 cd todo-app
 ```
 
