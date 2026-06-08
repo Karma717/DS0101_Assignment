@@ -17,5 +17,11 @@ I first planned to use Jenkins for this assignment, but Jenkins was not letting 
 ## Challenges Faced
 One challenge was that Jenkins was not letting me in, so I could not continue with the Jenkins setup. Another issue was that the project did not have a build script in package.json, so I updated the GitHub Actions workflow to handle the project correctly.
 
+## Screenshot
+The screenshot below shows the successful GitHub Actions pipeline run for the Node.js CI/CD workflow.
+
+![Successful GitHub Actions workflow](assets/screenshots/a2-github-actions-success.png)
+
 ## Repository Link
 https://github.com/Karma717/DSO101_Assignment.git
+

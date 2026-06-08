@@ -1,25 +1,64 @@
-# Assignment 2: CI/CD Pipeline Using GitHub Actions
+ 
+GITHUB ACTION AND RENDER DOCUMENTATION
+DSO101
+ 
+ 
+What is GitHub Actions?
+CI/CD automation tool inside GitHub that lets you automatically build, test, and deploy your code whenever something changes in your repository.
 
-## Overview
-This project uses GitHub Actions to create a CI/CD pipeline for the Node.js to-do application. The pipeline runs automatically when changes are pushed to the main branch.
+Example Workflow:
+When you push code to GitHub, it can automatically:
+•	Build your project 
+•	Run tests 
+•	Create Docker images 
+•	Push images to Docker Hub 
+•	Deploy to cloud (Render, AWS, etc.) 
+GitHub → Actions → Docker Build → Docker Hub → Deployment
 
-## Reason for Using GitHub Actions
-I first planned to use Jenkins for this assignment, but Jenkins was not letting me log in/access it properly. Because of that, I used GitHub Actions as an alternative CI/CD tool. GitHub Actions is directly connected to GitHub, so it was easier to set up and run the pipeline without installing or managing a Jenkins server.
+A workflow in GitHub action is a set of instructions that GitHub follows automatically.
+Workflows are written in a YAML file.
 
-## Pipeline Stages
-1. Checkout source code from GitHub
-2. Set up Node.js
-3. Install dependencies using npm install
-4. Run tests using npm test
-5. Run the build step or confirm that no build step is required
+Creating a workflow:
+Step 1. Create a folder 
+•	mkdir  .github
+Step 2. Create another folder inside the folder
+•	mkdir .github/workflows
+Step 3. Create a yaml file inside the folder
+•	touch .github/workflows/deploy.yml
+Inside deploy.yml:
+ 
 
-## Challenges Faced
-One challenge was that Jenkins was not letting me in, so I could not continue with the Jenkins setup. Another issue was that the project did not have a build script in package.json, so I updated the GitHub Actions workflow to handle the project correctly.
+Step 4: Push code to GitHub
+•	git add .
+•	git commit -m "add github actions"
+•	git push origin main
 
-## Screenshot
-The screenshot below shows the successful GitHub Actions pipeline run for the Node.js CI/CD workflow.
+Step 5: Go to GitHub repo:
+•	Click Actions tab 
+•	You will see workflow running automatically 
 
-![Successful GitHub Actions workflow](assets/screenshots/a2-github-actions-success.png)
 
-## Repository Link
-https://github.com/Karma717/DSO101_Assignment.git
+
+
+
+
+
+
+
+
+What is Render?
+Render is a cloud platform used to deploy and host web applications, APIs, and databases easily without managing servers manually.
+What Render Does
+•	Hosts web apps (Flask, Node.js, Django, etc.) 
+•	Runs APIs 
+•	Supports Docker containers 
+•	Auto-deploys from GitHub 
+•	Provides HTTPS (secure link)
+How Render Works
+•	Code → GitHub → Render → Live Website
+
+
+How Render and GitHub actions Works Together?
+GitHub Actions and Render work together to create a complete CI/CD workflow for deploying applications. When a developer pushes code to a GitHub repository, GitHub Actions automatically triggers a workflow that can build the project, install dependencies, and run tests to ensure the code is correct and error-free. If all steps pass successfully, the updated code is then deployed to Render either directly or through a connected deployment setup. Render pulls the latest code from the repository, builds the application if needed, and hosts it on a cloud server, making it accessible through a public URL. This combination ensures that every code change is tested automatically and deployed seamlessly, reducing manual effort and making the deployment process faster, reliable, and consistent across development and production environments.
+
+

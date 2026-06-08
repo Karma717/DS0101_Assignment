@@ -1,0 +1,14 @@
+node_modules
+backend/node_modules
+frontend/node_modules
+.git
+.github
+.env
+backend/.env
+frontend/.env
+npm-debug.log
+Dockerfile
+README.md
+READMEA2.md
+READMEA3
+assets/screenshots/*.png

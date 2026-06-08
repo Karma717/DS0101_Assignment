@@ -1,0 +1,11 @@
+node_modules/
+A1/node_modules/
+A1/backend/node_modules/
+A1/frontend/node_modules/
+.env
+A1/backend/.env
+A1/frontend/.env
+npm-debug.log
+coverage/
+dist/
+build/

@@ -1,0 +1,191 @@
+# Assignment 3: Continuous Integration and Continuous Deployment
+
+## Repository Link
+https://github.com/Karma717/DS0101.git
+
+## Project Overview
+This assignment uses the Node.js to-do application from Assignment 1. The project is configured so GitHub Actions can build a Docker image, push it to DockerHub, and trigger a Render.com deployment using a Render deploy webhook.
+
+## Tools and Technologies
+- GitHub for source code hosting
+- GitHub Actions for CI/CD automation
+- Docker for containerization
+- DockerHub for storing the Docker image
+- Render.com for cloud deployment
+- Node.js and npm for the application runtime
+
+## Completed Files
+The following A3 files/configurations are included:
+
+| File | Purpose |
+|---|---|
+| `Dockerfile` | Builds the Node.js Docker image for deployment |
+| `.dockerignore` | Prevents local dependencies, secrets, and screenshots from being copied into the Docker image |
+| `.gitignore` | Prevents `.env` files and `node_modules` from being committed |
+| `.github/workflows/deploy.yml` | Assignment-folder copy of the DockerHub and Render deployment workflow |
+| `../.github/workflows/deploy.yml` | Repository-root workflow that GitHub Actions will actually run |
+| `assets/screenshots/README.md` | Placeholder instructions for required screenshots |
+
+## Task 1: GitHub Repository Setup
+The repository contains the required project files and npm scripts.
+
+The root `package.json` includes:
+
+```json
+{
+  "start": "node backend/server.js",
+  "test": "echo \"Tests passed\"",
+  "build": "echo \"No build step required\""
+}
+```
+
+These scripts allow the workflow and Docker build to start the application and run a test step.
+
+## Task 2: Dockerfile Verification
+The Dockerfile uses Node.js LTS and builds the application container.
+
+Main Dockerfile steps:
+
+```dockerfile
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY backend/package*.json ./backend/
+RUN cd backend && npm ci --omit=dev
+COPY backend ./backend
+COPY frontend ./frontend
+RUN npm test
+ENV PORT=5000
+EXPOSE 5000
+CMD ["npm", "start"]
+```
+
+The Dockerfile installs the root assignment dependencies and the backend dependencies before starting the backend server.
+
+## Task 3: GitHub Actions Workflow
+The deployment workflow is saved in:
+
+```text
+../.github/workflows/deploy.yml
+```
+
+GitHub Actions reads workflows from the repository-root `.github/workflows` folder, so this root workflow is the one that runs after pushing to GitHub.
+
+The workflow also has a copy in:
+
+```text
+.github/workflows/deploy.yml
+```
+
+Workflow stages:
+
+1. Checkout the repository.
+2. Login to DockerHub.
+3. Build the Docker image from the `A1` folder.
+4. Push the image to DockerHub.
+5. Trigger Render deployment through a Render deploy webhook.
+
+Workflow summary:
+
+```yaml
+name: Docker Build and Render Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: todo-app
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest ./A1
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Trigger Render Deployment
+        run: curl --fail --request POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+```
+
+## Required GitHub Secrets
+The following secrets must be added in GitHub before running the workflow:
+
+| Secret Name | Description |
+|---|---|
+| `DOCKERHUB_USERNAME` | DockerHub username |
+| `DOCKERHUB_TOKEN` | DockerHub access token |
+| `RENDER_DEPLOY_HOOK_URL` | Render deploy hook URL |
+
+Credentials are stored in GitHub Secrets and are not hardcoded in the project.
+
+## Task 4: Render Deployment
+On Render.com, create a new web service and select the option to deploy from an existing Docker image.
+
+Docker image format:
+
+```text
+<dockerhub-username>/todo-app:latest
+```
+
+After each push to the `main` branch, GitHub Actions builds and pushes the latest Docker image. The final workflow step calls the Render deploy hook so Render redeploys the latest image.
+
+## Steps Taken
+1. Verified the GitHub repository structure.
+2. Verified npm scripts in `package.json`.
+3. Updated the Dockerfile for the Node.js to-do app.
+4. Added `.dockerignore` to keep local dependencies and secrets out of the Docker image.
+5. Added `.gitignore` files to protect `.env` files and `node_modules`.
+6. Created the repository-root deployment workflow for GitHub Actions.
+7. Kept a copy of the deployment workflow inside the A1 assignment folder.
+8. Added screenshot folder instructions.
+9. Documented the CI/CD process in this `READMEA3` file.
+
+## Challenges Faced
+One challenge was making sure the GitHub Actions workflow was placed correctly. The assignment folder contains a workflow copy, but GitHub only runs workflow files from the repository-root `.github/workflows` directory. Another challenge was making sure Docker did not depend on local `node_modules` folders or local `.env` files, so `.dockerignore` and `.gitignore` were added.
+
+## Learning Outcomes
+From this assignment, I learned how to:
+
+1. Create a Dockerfile for a Node.js application.
+2. Build and push Docker images through GitHub Actions.
+3. Use GitHub Secrets for DockerHub and Render credentials.
+4. Trigger a Render deployment with a deploy webhook.
+5. Connect GitHub, DockerHub, and Render into a CI/CD pipeline.
+
+## Screenshots
+Save the required screenshots in `assets/screenshots`.
+
+### Successful GitHub Actions Workflow
+![Successful GitHub Actions workflow](assets/screenshots/a3-github-actions-success.png)
+
+### DockerHub Pushed Image
+![DockerHub pushed image](assets/screenshots/a3-dockerhub-image.png)
+
+### Render Deployment
+![Render deployment](assets/screenshots/a3-render-deployment.png)
+
+## Render Deployment Link
+Add the final deployed Render URL here after creating the service:
+
+```text
+https://your-render-service-name.onrender.com
+```
+
+## Final Outcome
+The Assignment 3 CI/CD setup is complete. When the repository is pushed to the `main` branch, GitHub Actions builds the Docker image from the `A1` folder, pushes it to DockerHub, and triggers Render.com to redeploy the latest container.
